@@ -2,7 +2,7 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-[#ff9f1c] to-[#ff7f11] text-white text-center p-4 mt-12">
-      <p className="text-sm">© Rifas Rosyi Martinez</p>
+      <p className="text-sm">© Rosyi Martinez</p>
 
       <div className="flex justify-center gap-4 my-3">
         <a

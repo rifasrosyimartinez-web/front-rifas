@@ -30,7 +30,7 @@ const PaymentInfoCard = ({
   };
 
   return (
-    <div className="bg-black border border-orange-300 text-white rounded-2xl p-6 max-w-lg w-[350px] text-center shadow-lg">
+    <div className="bg-gradient-to-r from-[#ff9f1c] to-[#ff7f11] text-white rounded-2xl p-6 max-w-lg w-[350px] text-center shadow-lg">
       <h2 className="text-lg font-semibold">Modo de Pago</h2>
       <p className="text-sm mb-2">{bank}</p>
 

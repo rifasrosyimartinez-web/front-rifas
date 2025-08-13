@@ -473,7 +473,7 @@ function HomePage() {
 
             <div className="py-3 px-5 mb-10 mx-auto flex justify-between items-center bg-black">
               <p className="text-3xl md:text-2xl font-bebas font-bold text-white">
-                Rifas Rosyi Martinez
+                Rosyi Martinez &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               </p>
               <div className="flex items-center gap-7">
                 <img
