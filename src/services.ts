@@ -2,7 +2,7 @@ import axios from "axios";
 import { EXCHANGE_RATE } from "./utils/contants";
 import { RaffleType } from "./utils/types";
 
-const API_URL = "https://back-rifas-production.up.railway.app";
+const API_URL = "https://back-rifas-production-rosyi.up.railway.app";
 
 export const submitTicket = async (values: any) => {
   try {
