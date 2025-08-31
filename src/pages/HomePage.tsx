@@ -33,9 +33,9 @@ function HomePage() {
     visible: false,
     minValue: 0,
   });
-
+  const [disponibleTickets, setDisponibleTickets] = useState<number>(0)
+  const [alertaTickets, setAlertaTickets] = useState<string>("");
   const [exchangeRateVzla, setExchangeRateVzla] = useState<number>(0);
-
   const [totalUSD, setTotalUSD] = useState(0);
   const [totalBS, setTotalBS] = useState(0);
   const [selectedBank, setSelectedBank] = useState<string>();
@@ -64,6 +64,7 @@ function HomePage() {
         setRaffleActually(responseRaffle[0]);
         let minValue = parseInt(responseRaffle[0]?.minValue)
         formik.setFieldValue("numberTickets", minValue);
+        setDisponibleTickets(10000 - responseRaffle.totalSold)
         updateTotal(minValue);
       } catch (error) {
         console.error("Error al cargar datos:", error);
@@ -247,6 +248,7 @@ function HomePage() {
       formik.setFieldValue("numberTickets", "");
       setTotalUSD(0);
       setTotalBS(0);
+      setAlertaTickets("");
       return;
     }
 
@@ -255,15 +257,33 @@ function HomePage() {
 
       if (value > MAX_VALUE) value = MAX_VALUE;
 
-      formik.setFieldValue("numberTickets", rawValue);
+      if (value > disponibleTickets) {
+        value = disponibleTickets;
+        setAlertaTickets(`Solo quedan ${disponibleTickets} tickets disponibles`);
+      } else {
+        setAlertaTickets("");
+      }
+
+      formik.setFieldValue("numberTickets", value);
       updateTotal(value);
     }
   };
 
+  console.log(disponibleTickets)
+
   const handlePredefinedSelection = (value: number) => {
-    formik.setFieldValue("numberTickets", value);
+    let finalValue = value;
+
+    if (value > disponibleTickets) {
+      finalValue = disponibleTickets;
+      setAlertaTickets(`Solo quedan ${disponibleTickets} tickets disponibles`);
+    } else {
+      setAlertaTickets("");
+    }
+
+    formik.setFieldValue("numberTickets", finalValue);
     inputRef.current?.focus();
-    updateTotal(value);
+    updateTotal(finalValue);
   };
 
   const handleFileChange = async (
@@ -472,7 +492,7 @@ function HomePage() {
           <div className="flex-grow">
 
             <div className="py-3 px-5 mb-10 mx-auto flex justify-between items-center bg-black">
-              <p className="text-3xl md:text-2xl font-bebas font-bold text-white">
+              <p className="hidden md:block text-3xl md:text-2xl font-bebas font-bold text-white">
                 Rosyi Martinez &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               </p>
               <div className="flex items-center gap-7">
@@ -492,7 +512,7 @@ function HomePage() {
               </button>
             </div>
 
-            {raffleActually?.visible ? (
+            {disponibleTickets > 0 && raffleActually?.visible ? (
               <>
                 <HeaderPage
                   name={raffleActually?.name}
@@ -526,6 +546,13 @@ function HomePage() {
                       min={raffleActually?.minValue}
                       max={MAX_VALUE}
                     />
+
+                    {alertaTickets && (
+                      <p className="bg-red-700 px-8 py-2 text-white rounded text-sm mt-2 flex gap-3">
+                        <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/high-priority.png" alt="high-priority"/>
+                        {alertaTickets}
+                      </p>
+                    )}
 
                     {formik.touched.numberTickets &&
                       formik.errors.numberTickets ? (
@@ -757,7 +784,7 @@ function HomePage() {
           </div>
 
           <Footer />
-          
+
         </section>
       )}
     </div>

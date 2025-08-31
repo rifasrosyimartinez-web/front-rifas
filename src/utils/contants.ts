@@ -1,27 +1,25 @@
 export const banksData = [
   {
-    type: "BDV",
-    bank: "Banco de Venezuela",
-    logo: "bancoVenezuela.jpg",
-    bdv: "0102",
-    phone: "04124698178",
-    indentifyBdv: "30415915",
+    type: "Banca Amiga",
+    bank: "Pago Móvil",
+    logo: "bancaamiga.png",
+    bankNumb: "0172",
+    phone: "04249352426",
+    indentify: "11600286",
   },
-
   {
     type: "binance",
     bank: "Binance",
     logo: "binanceLogo.jpeg",
-    email: "ilianagoyo1@gmail.com",
+    email: "prueba @gmail.com",
   },
-
   {
     type: "zelle",
     bank: "Zelle",
     logo: "zelleLogo.png",
-    email: "jravelo470@gmail.com",
-    nameZelle: "Maykol sierra",
+    email: "Gutierrezyisseel@gmail.com", 
+    nameZelle: "Yisseel Gutierrez",
   },
 ];
-export const PHONE_SUPPORT = "(0412)-4698178";
+export const PHONE_SUPPORT = "0424-9264000";
 export const EXCHANGE_RATE = 135;
