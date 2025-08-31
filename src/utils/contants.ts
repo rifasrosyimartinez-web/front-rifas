@@ -11,7 +11,7 @@ export const banksData = [
     type: "binance",
     bank: "Binance",
     logo: "binanceLogo.jpeg",
-    email: "prueba @gmail.com",
+    email: "Rosyaimarm@gmail.com",
   },
   {
     type: "zelle",
