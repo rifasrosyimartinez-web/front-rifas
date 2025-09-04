@@ -4,7 +4,7 @@ export const banksData = [
     bank: "Pago Móvil",
     logo: "bancaamiga.png",
     bankNumb: "0172",
-    phone: "04249352426",
+    phone: "+58 4249352436",
     indentify: "11600286",
   },
   {
@@ -18,7 +18,7 @@ export const banksData = [
     bank: "Zelle",
     logo: "zelleLogo.png",
     email: "Gutierrezyisseel@gmail.com", 
-    nameZelle: "Yisseel Gutierrez",
+    nameZelle: "Reinsi perozo",
   },
 ];
 export const PHONE_SUPPORT = "0424-9264000";
