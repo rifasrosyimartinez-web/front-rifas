@@ -11,9 +11,9 @@ interface Props {
   indentify?: string;
   email?: string;
   nameZelle?: string;
+  nameBci?: string;
   totalUsd: number;
   totalBs: number;
-  nameBci: string;
 }
 
 const PaymentInfoCard = ({
