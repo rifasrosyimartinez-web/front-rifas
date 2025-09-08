@@ -8,6 +8,16 @@ export const banksData = [
     indentify: "11600286",
   },
   {
+    type: "BCI",
+    bank: "Banco Crédito e Inversiones",
+    logo: "bci.png",
+    rut: "25.974.010-K",
+    bankType: "Cuenta Corriente",
+    bankNumb: "777925974010",
+    email: "alextorrealbab29@gmail.com",
+    nameBci: "ALEXANDRA TORREALBA",
+  },
+  {
     type: "binance",
     bank: "Binance",
     logo: "binanceLogo.jpeg",

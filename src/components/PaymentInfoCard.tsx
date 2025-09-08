@@ -5,13 +5,17 @@ interface Props {
   bank: string;
   logo: string;
   bankNumb?: string;
+  bankType?: string;
+  rut?: string;
   phone?: string;
   indentify?: string;
   email?: string;
   nameZelle?: string;
   totalUsd: number;
   totalBs: number;
+  nameBci: string;
 }
+
 const PaymentInfoCard = ({
   bank,
   logo,
@@ -23,6 +27,9 @@ const PaymentInfoCard = ({
   totalUsd,
   totalBs,
   type,
+  bankType,
+  nameBci,
+  rut,
 }: Props) => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -70,6 +77,47 @@ const PaymentInfoCard = ({
         </div>
       ) : null}
 
+      {type === "BCI" ? (
+        <div className="text-center space-y-2">
+          <p className="flex column gap-2 items-center">
+            <span className="font-bold">Titular:</span> 
+            {nameBci}
+            <LuClipboard
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => copyToClipboard(nameBci ?? "")}
+            />
+          </p>
+          <p className="flex gap-2 items-center">
+            <span className="font-bold">RUT:</span> {rut}
+            <LuClipboard
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => copyToClipboard(rut ?? "")}
+            />
+          </p>
+          <p className="flex gap-2 items-center">
+            <span className="font-bold">Tipo De Cuenta:</span> {bankType}
+            <LuClipboard
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => copyToClipboard(bankType ?? "")}
+            />
+          </p>
+          <p className="flex gap-2 items-center">
+            <span className="font-bold">Numero De Cuenta:</span> {bankNumb}
+            <LuClipboard
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => copyToClipboard(bankNumb ?? "")}
+            />
+          </p>
+          <p className="flex gap-2 items-center">
+            <span className="font-bold">Email:</span> {email}
+            <LuClipboard
+              className="w-5 h-5 cursor-pointer"
+              onClick={() => copyToClipboard(email ?? "")}
+            />
+          </p>
+        </div>
+      ) : null}
+
       {type === "binance" ? (
         <div className="text-center space-y-2">
           <p className="flex gap-2 items-center">
@@ -105,7 +153,13 @@ const PaymentInfoCard = ({
       
       {type === "Banca Amiga" ? (
         <p className="text-2xl font-bold">
-          {totalBs.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} Bs.
+          $ {totalBs.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} Bs.
+        </p>
+      ) : null}
+
+      {type === "BCI" ? (
+        <p className="text-2xl font-bold">
+          $ {totalUsd * 1000} CLP
         </p>
       ) : null}
 
