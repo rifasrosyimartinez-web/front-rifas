@@ -14,6 +14,7 @@ interface Props {
   nameBci?: string;
   totalUsd: number;
   totalBs: number;
+  totalCLP: number;
 }
 
 const PaymentInfoCard = ({
@@ -26,6 +27,7 @@ const PaymentInfoCard = ({
   nameZelle,
   totalUsd,
   totalBs,
+  totalCLP,
   type,
   bankType,
   nameBci,
@@ -159,7 +161,7 @@ const PaymentInfoCard = ({
 
       {type === "BCI" ? (
         <p className="text-2xl font-bold">
-          $ {totalUsd * 1000} CLP
+          $ {totalCLP} CLP
         </p>
       ) : null}
 

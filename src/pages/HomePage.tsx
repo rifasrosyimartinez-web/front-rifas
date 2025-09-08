@@ -38,6 +38,7 @@ function HomePage() {
   const [exchangeRateVzla, setExchangeRateVzla] = useState<number>(0);
   const [totalUSD, setTotalUSD] = useState(0);
   const [totalBS, setTotalBS] = useState(0);
+  const [totalCLP, setTotalCLP] = useState(0);
   const [selectedBank, setSelectedBank] = useState<string>();
 
   useEffect(() => {
@@ -45,7 +46,11 @@ function HomePage() {
     if (selectedBank === "binance" || selectedBank === "zelle") {
       formik.setFieldValue("amountPaid", totalUSD);
       return;
+    } else if ( selectedBank === "BCI" ) {
+      formik.setFieldValue("amountPaid", totalCLP);
+      return;
     }
+
     formik.setFieldValue("amountPaid", totalBS);
   }, [selectedBank]);
 
@@ -85,11 +90,16 @@ function HomePage() {
     const totalBS = totalUSD * exchangeRateVzla;
     setTotalUSD(totalUSD);
     setTotalBS(totalBS);
+    setTotalCLP(totalUSD * 1000);
 
     if (selectedBank === "binance" || selectedBank === "zelle") {
       formik.setFieldValue("amountPaid", totalUSD);
       return;
+    } else if ( selectedBank === "BCI" ) {
+      formik.setFieldValue("amountPaid", totalCLP);
+      return;
     }
+
     formik.setFieldValue("amountPaid", totalBS);
   };
 
@@ -146,7 +156,7 @@ function HomePage() {
         <div><strong>Boletos comprados:</strong> ${values.numberTickets}</div>
         <div><strong>Método de pago:</strong> ${values.paymentMethod}</div>
         <div><strong>Referencia:</strong> ${values.reference}</div>
-        <div><strong>Monto pagado:</strong> ${values.amountPaid}${values.paymentMethod === "Banco Mercantil" ? " Bs" : " $"}</div>
+        <div><strong>Monto pagado:</strong> ${values.amountPaid}${values.paymentMethod === "Banco Mercantil" ? " Bs" : values.paymentMethod === "BCI" ? "CLP" : " $"}</div>
 
       </div>
     </div>
@@ -176,6 +186,7 @@ function HomePage() {
         resetForm();
         setTotalUSD(0);
         setTotalBS(0);
+        setTotalCLP(0);
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
           setPreview(null);
@@ -248,6 +259,7 @@ function HomePage() {
       formik.setFieldValue("numberTickets", "");
       setTotalUSD(0);
       setTotalBS(0);
+      setTotalCLP(0);
       setAlertaTickets("");
       return;
     }
@@ -269,7 +281,6 @@ function HomePage() {
     }
   };
 
-  console.log(disponibleTickets)
 
   const handlePredefinedSelection = (value: number) => {
     let finalValue = value;
@@ -583,6 +594,7 @@ function HomePage() {
                         onSelectedBank={(type: string) => setSelectedBank(type)}
                         totalBs={totalBS}
                         totalUSD={totalUSD}
+                        totalCLP={totalCLP}
                       />
                     </div>
 

@@ -3,11 +3,12 @@ import PaymentInfoCard from "./PaymentInfoCard";
 import { banksData } from "@/utils/contants";
 
 interface Props {
+  totalCLP: number;
   totalUSD: number;
   totalBs: number;
   onSelectedBank: (type: string) => void;
 }
-const PaymentMethods = ({ totalBs, totalUSD, onSelectedBank }: Props) => {
+const PaymentMethods = ({ totalCLP, totalBs, totalUSD, onSelectedBank }: Props) => {
   const [selectedBank, setSelectedBank] = useState(banksData[0]);
 
   useEffect(() => {
@@ -47,6 +48,7 @@ const PaymentMethods = ({ totalBs, totalUSD, onSelectedBank }: Props) => {
           {...selectedBank}
           totalBs={totalBs}
           totalUsd={totalUSD}
+          totalCLP={totalCLP}
         />
       </div>
     </div>

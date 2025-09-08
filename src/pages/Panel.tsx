@@ -443,6 +443,7 @@ function Panel() {
                 >
                   <option value="">Todos</option>
                   <option value="BDV">BDV</option>
+                  <option value="BCI">BCI</option>
                   <option value="zelle">Zelle</option>
                   <option value="binance">Binance</option>
                 </select>
@@ -605,7 +606,7 @@ function Panel() {
                     {ticket?.amountPaid
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                    {ticket.paymentMethod === "BDV" ? "Bs" : "$"}
+                    {ticket.paymentMethod === "BDV" ? "Bs" : ticket.paymentMethod === "BCI" ? "CLP" : "$"}
                   </td>
                   <td className="border border-gray-300 px-2 md:px-4 py-2">
                     <button
