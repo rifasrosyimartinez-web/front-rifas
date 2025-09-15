@@ -3,6 +3,7 @@ import { EXCHANGE_RATE } from "./utils/contants";
 import { RaffleType } from "./utils/types";
 
 const API_URL = "https://back-rifas-production-rosyi.up.railway.app";
+// const API_URL = "http://localhost:5000";
 
 export const submitTicket = async (values: any) => {
   try {
@@ -19,9 +20,9 @@ export const submitTicket = async (values: any) => {
   }
 };
 
-export const getTopBuyers = async () => {
+export const getTopBuyers = async (mode: "today" | "yesterday" | "total" = "total") => {
   try {
-    const response = await axios.get(`${API_URL}/api/tickets/top-buyers`);
+    const response = await axios.get(`${API_URL}/api/tickets/top-buyers/${mode}`);
     return response.data;
   } catch (error) {
     console.error("Error al obtener el top de compradores:", error);
